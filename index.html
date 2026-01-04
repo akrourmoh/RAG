@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfolio — Ton Nom</title>
+  <meta name="description" content="Portfolio de Ton Nom : projets, compétences, expérience et contact." />
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --panel:#0f1b33;
+      --text:#e9eefc;
+      --muted:#b7c2e0;
+      --brand:#7c5cff;
+      --brand2:#22c55e;
+      --border: rgba(255,255,255,.10);
+      --shadow: 0 20px 40px rgba(0,0,0,.35);
+      --radius: 18px;
+      --max: 1080px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial;
+      background: radial-gradient(1200px 800px at 80% -10%, rgba(124,92,255,.28), transparent 55%),
+                  radial-gradient(900px 700px at 10% 0%, rgba(34,197,94,.18), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.5;
+    }
+    a{color:inherit; text-decoration:none}
+    .container{max-width:var(--max); margin:0 auto; padding:0 20px}
+    .nav{
+      position:sticky; top:0; z-index:10;
+      backdrop-filter: blur(10px);
+      background: rgba(11,18,32,.75);
+      border-bottom:1px solid var(--border);
+    }
+    .nav-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+    }
+    .logo{
+      display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.2px
+    }
+    .dot{width:10px; height:10px; border-radius:99px; background:linear-gradient(135deg,var(--brand),var(--brand2)); box-shadow:0 0 0 4px rgba(124,92,255,.15)}
+    .menu{display:flex; gap:14px; align-items:center; flex-wrap:wrap}
+    .menu a{
+      padding:8px 10px; border-radius:12px; color:var(--muted);
+      border:1px solid transparent;
+    }
+    .menu a:hover{color:var(--text); border-color:var(--border); background:rgba(255,255,255,.04)}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 14px; border-radius:14px; font-weight:700;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      box-shadow: none;
+    }
+    .btn.primary{
+      border:1px solid rgba(124,92,255,.35);
+      background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(124,92,255,.65));
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .hero{
+      padding:64px 0 26px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:22px;
+      align-items:stretch;
+    }
+    @media (max-width: 900px){
+      .hero-grid{grid-template-columns:1fr}
+    }
+    .card{
+      background: rgba(15,27,51,.72);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+    .title{
+      font-size: 40px;
+      line-height:1.1;
+      margin:0 0 10px;
+      letter-spacing:-.6px;
+    }
+    .subtitle{color:var(--muted); margin:0 0 18px; font-size:16px}
+    .pill-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+    .pill{
+      font-size:13px; color:var(--muted);
+      border:1px solid var(--border);
+      padding:8px 10px; border-radius:999px;
+      background: rgba(255,255,255,.03);
+    }
+    .hero-actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px}
+    .kpis{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+    .kpi{
+      padding:14px; border-radius:16px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+    }
+    .kpi strong{display:block; font-size:22px}
+    .kpi span{color:var(--muted); font-size:13px}
+
+    section{padding: 18px 0}
+    .section-title{
+      font-size:22px; margin:0 0 12px; letter-spacing:-.2px
+    }
+    .grid{
+      display:grid; gap:14px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (max-width: 900px){ .grid{grid-template-columns:1fr} }
+    .item{
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      border-radius: 18px;
+      padding:16px;
+      display:flex; flex-direction:column; gap:10px;
+      min-height: 170px;
+    }
+    .tagrow{display:flex; gap:8px; flex-wrap:wrap}
+    .tag{
+      font-size:12px; padding:6px 8px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      color: var(--muted);
+      background: rgba(255,255,255,.02);
+    }
+    .muted{color:var(--muted)}
+    .row{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+    .footer{
+      padding: 26px 0 46px;
+      color:var(--muted);
+      text-align:center;
+    }
+    .small{font-size:13px}
+    .divider{height:1px; background:var(--border); margin:14px 0}
+    .input{
+      width:100%;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      padding:12px 12px;
+      color:var(--text);
+      outline:none;
+    }
+    textarea.input{min-height:120px; resize:vertical}
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <div class="nav">
+    <div class="container nav-inner">
+      <div class="logo">
+        <span class="dot"></span>
+        <span>Ton Nom</span>
+      </div>
+      <div class="menu">
+        <a href="#projets">Projets</a>
+        <a href="#competences">Compétences</a>
+        <a href="#parcours">Parcours</a>
+        <a href="#contact">Contact</a>
+        <a class="btn" href="https://www.linkedin.com/in/TON-LINKEDIN" target="_blank" rel="noreferrer">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container hero-grid">
+      <div class="card">
+        <h1 class="title">Data Scientist / IA Générative</h1>
+        <p class="subtitle">
+          Je conçois des solutions data & IA (LLMs, ML, dashboards) pour résoudre des problèmes concrets.
+          <br/>Basé à Paris • Ouvert aux opportunités.
+        </p>
+
+        <div class="pill-row">
+          <span class="pill">Python</span>
+          <span class="pill">SQL</span>
+          <span class="pill">Machine Learning</span>
+          <span class="pill">LLM / RAG</span>
+          <span class="pill">Power BI</span>
+        </div>
+
+        <div class="hero-actions">
+          <a class="btn primary" href="#projets">Voir mes projets</a>
+          <a class="btn" href="CV.pdf" target="_blank" rel="noreferrer">Télécharger mon CV</a>
+          <a class="btn" href="https://github.com/TON-GITHUB" target="_blank" rel="noreferrer">GitHub</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 class="section-title">En bref</h2>
+        <div class="kpis">
+          <div class="kpi"><strong>+3</strong><span>Projets solides</span></div>
+          <div class="kpi"><strong>RAG</strong><span>IA agentique / LLM</span></div>
+          <div class="kpi"><strong>BI</strong><span>Dashboards & KPI</span></div>
+          <div class="kpi"><strong>Prod</strong><span>API / Docker</span></div>
+        </div>
+        <div class="divider"></div>
+        <p class="muted small">
+          Astuce : ajoute ici 1 phrase sur ce que tu cherches (CDI / alternance / stage) + ton secteur (énergie, finance…).
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <!-- PROJETS -->
+  <section id="projets">
+    <div class="container">
+      <h2 class="section-title">Projets</h2>
+      <div class="grid">
+
+        <article class="item">
+          <div class="row" style="justify-content:space-between">
+            <strong>Assistant IA (RAG) pour documents</strong>
+            <span class="tag">2025</span>
+          </div>
+          <p class="muted">
+            Recherche sémantique + génération de réponses à partir d’un corpus (PDF/Docs).
+          </p>
+          <div class="tagrow">
+            <span class="tag">Python</span><span class="tag">LLM</span><span class="tag">RAG</span><span class="tag">Vector DB</span>
+          </div>
+          <div class="row">
+            <a class="btn" href="https://github.com/TON-GITHUB/projet-rag" target="_blank" rel="noreferrer">Code</a>
+            <a class="btn" href="#" target="_blank" rel="noreferrer">Démo</a>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="row" style="justify-content:space-between">
+            <strong>Prévision de la demande</strong>
+            <span class="tag">2024</span>
+          </div>
+          <p class="muted">
+            Modèle de prédiction + évaluation + déploiement léger (API).
+          </p>
+          <div class="tagrow">
+            <span class="tag">Pandas</span><span class="tag">Sklearn</span><span class="tag">API</span><span class="tag">Docker</span>
+          </div>
+          <div class="row">
+            <a class="btn" href="https://github.com/TON-GITHUB/forecast" target="_blank" rel="noreferrer">Code</a>
+            <a class="btn" href="#" target="_blank" rel="noreferrer">Résultats</a>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="row" style="justify-content:space-between">
+            <strong>Dashboard KPI (Power BI)</strong>
+            <span class="tag">2024</span>
+          </div>
+          <p class="muted">
+            Modélisation, KPI et visualisations pour pilotage (ventes / opérationnel).
+          </p>
+          <div class="tagrow">
+            <span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">SQL</span>
+          </div>
+          <div class="row">
+            <a class="btn" href="#" target="_blank" rel="noreferrer">Captures</a>
+            <a class="btn" href="#" target="_blank" rel="noreferrer">Détails</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPETENCES -->
+  <section id="competences">
+    <div class="container">
+      <h2 class="section-title">Compétences</h2>
+      <div class="grid">
+        <div class="item">
+          <strong>Data & ML</strong>
+          <p class="muted">Nettoyage, feature engineering, modèles, évaluation, interprétabilité.</p>
+          <div class="tagrow">
+            <span class="tag">Pandas</span><span class="tag">Sklearn</span><span class="tag">Stats</span><span class="tag">Time series</span>
+          </div>
+        </div>
+        <div class="item">
+          <strong>IA Générative</strong>
+          <p class="muted">RAG, prompts, agents, évaluation et guardrails.</p>
+          <div class="tagrow">
+            <span class="tag">LLM</span><span class="tag">RAG</span><span class="tag">Embeddings</span><span class="tag">Agents</span>
+          </div>
+        </div>
+        <div class="item">
+          <strong>Déploiement</strong>
+          <p class="muted">APIs, conteneurs, CI/CD léger, bonnes pratiques.</p>
+          <div class="tagrow">
+            <span class="tag">FastAPI</span><span class="tag">Docker</span><span class="tag">Git</span><span class="tag">Linux</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARCOURS -->
+  <section id="parcours">
+    <div class="container">
+      <h2 class="section-title">Parcours</h2>
+      <div class="card">
+        <div class="row" style="justify-content:space-between">
+          <strong>Expérience / Études</strong>
+          <span class="muted small">Mets 2–4 lignes max par élément</span>
+        </div>
+        <div class="divider"></div>
+
+        <p><strong>2025 — Data / IA (Entreprise)</strong><br/>
+          <span class="muted">Missions : LLM, prototypes, industrialisation, documentation.</span>
+        </p>
+
+        <p><strong>2024 — Formation / Certification</strong><br/>
+          <span class="muted">Ex : Data Science, ML, BI, Cloud.</span>
+        </p>
+
+        <p class="muted small">Tu peux aussi ajouter : certifications, publications, conférences, hackathons.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">Contact</h2>
+      <div class="grid">
+        <div class="item">
+          <strong>Me joindre</strong>
+          <p class="muted">Le plus simple : email + LinkedIn + GitHub.</p>
+          <div class="row">
+            <a class="btn primary" href="mailto:tonmail@email.com">tonmail@email.com</a>
+            <a class="btn" href="https://www.linkedin.com/in/TON-LINKEDIN" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a class="btn" href="https://github.com/TON-GITHUB" target="_blank" rel="noreferrer">GitHub</a>
+          </div>
+        </div>
+
+        <div class="item">
+          <strong>Message rapide</strong>
+          <p class="muted small">Ce formulaire n’envoie pas d’email (site statique). Utilise plutôt le bouton mail ci-contre.</p>
+          <input class="input" placeholder="Ton nom" />
+          <input class="input" placeholder="Ton email" />
+          <textarea class="input" placeholder="Ton message"></textarea>
+          <button class="btn" type="button" onclick="alert('Site statique : clique sur l’email à gauche 🙂')">Envoyer</button>
+        </div>
+
+        <div class="item">
+          <strong>Disponibilité</strong>
+          <p class="muted">Ajoute ta situation :</p>
+          <div class="tagrow">
+            <span class="tag">CDI</span>
+            <span class="tag">Paris / Remote</span>
+            <span class="tag">Préavis : X semaines</span>
+          </div>
+          <p class="muted small">Option : ajoute un “pitch” de 2 phrases ici.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container small">
+      © <span id="y"></span> Ton Nom • Construit en HTML/CSS •
+      <a class="muted" href="#top">Haut de page</a>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

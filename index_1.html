@@ -1,0 +1,685 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfolio — Mohammed Akrour</title>
+  <meta name="description" content="Portfolio de Mohammed Akrour : IA Générative, LLM/RAG, ML/DL, projets, expérience et contact." />
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --panel:#0f1b33;
+      --panel2:#101f3d;
+      --text:#e9eefc;
+      --muted:#b7c2e0;
+      --brand:#7c5cff;
+      --brand2:#22c55e;
+      --border: rgba(255,255,255,.10);
+      --shadow: 0 20px 40px rgba(0,0,0,.35);
+      --radius: 20px;
+      --max: 1100px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial;
+      background:
+        radial-gradient(1200px 800px at 80% -10%, rgba(124,92,255,.30), transparent 55%),
+        radial-gradient(900px 700px at 10% 0%, rgba(34,197,94,.18), transparent 55%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.55;
+    }
+
+    /* ✅ BACKGROUND ANIMATION CANVAS */
+    #bg-canvas{
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+      opacity: .6;
+    }
+
+    a{color:inherit; text-decoration:none}
+    .container{max-width:var(--max); margin:0 auto; padding:0 20px}
+
+    /* NAV */
+    .nav{
+      position:sticky; top:0; z-index:10;
+      backdrop-filter: blur(10px);
+      background: rgba(11,18,32,.75);
+      border-bottom:1px solid var(--border);
+    }
+    .nav-inner{display:flex; align-items:center; justify-content:space-between; padding:14px 0; gap:14px}
+    .logo{display:flex; align-items:center; gap:10px; font-weight:900; letter-spacing:.2px}
+    .dot{width:10px; height:10px; border-radius:99px; background:linear-gradient(135deg,var(--brand),var(--brand2)); box-shadow:0 0 0 4px rgba(124,92,255,.15)}
+    .menu{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+    .menu a{
+      padding:8px 10px; border-radius:12px; color:var(--muted);
+      border:1px solid transparent;
+    }
+    .menu a:hover{color:var(--text); border-color:var(--border); background:rgba(255,255,255,.04)}
+
+    /* BUTTONS */
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 14px; border-radius:14px; font-weight:800;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      gap:8px;
+    }
+    .btn:hover{transform:translateY(-1px); background:rgba(255,255,255,.06)}
+    .btn.primary{
+      border:1px solid rgba(124,92,255,.35);
+      background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(124,92,255,.65));
+    }
+
+    /* HERO */
+    header{padding:66px 0 22px}
+    .hero{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    @media (max-width: 900px){ .hero{grid-template-columns:1fr} }
+
+    .card{
+      background: rgba(15,27,51,.72);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+
+    .hero-left{
+      display:grid;
+      grid-template-columns: 1fr auto;
+      gap:18px;
+      align-items:center;
+    }
+    @media (max-width: 700px){ .hero-left{grid-template-columns:1fr} }
+
+    .title{
+      font-size: 42px;
+      line-height:1.08;
+      margin:0 0 10px;
+      letter-spacing:-.8px;
+    }
+    .subtitle{color:var(--muted); margin:0 0 14px; font-size:16px}
+
+    .pill-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+    .pill{
+      font-size:13px; color:var(--muted);
+      border:1px solid var(--border);
+      padding:8px 10px; border-radius:999px;
+      background: rgba(255,255,255,.03);
+    }
+
+    .hero-actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px}
+
+    /* PHOTO */
+    .avatar-wrap{
+      width:150px; height:150px;
+      border-radius:999px;
+      padding:4px;
+      background: linear-gradient(135deg, rgba(124,92,255,.9), rgba(34,197,94,.65));
+      box-shadow: 0 18px 40px rgba(0,0,0,.35);
+      justify-self:end;
+    }
+    .avatar{
+      width:100%; height:100%;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+      object-fit: cover;
+      display:block;
+    }
+    .avatar-note{
+      margin-top:10px;
+      font-size:12px;
+      color:var(--muted);
+      text-align:center;
+    }
+
+    /* KPI / RIGHT CARD */
+    .section-title{font-size:22px; margin:0 0 12px; letter-spacing:-.2px}
+    .kpis{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+    .kpi{
+      padding:14px; border-radius:16px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+    }
+    .kpi strong{display:block; font-size:16px}
+    .kpi span{color:var(--muted); font-size:13px}
+    .divider{height:1px; background:var(--border); margin:14px 0}
+
+    /* SECTIONS */
+    section{padding: 18px 0}
+    .grid{
+      display:grid; gap:14px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (max-width: 900px){ .grid{grid-template-columns:1fr} }
+
+    .item{
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      border-radius: 18px;
+      padding:16px;
+      display:flex; flex-direction:column; gap:10px;
+      min-height: 180px;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+    }
+    .item:hover{
+      transform: translateY(-2px);
+      background: rgba(255,255,255,.045);
+      border-color: rgba(255,255,255,.14);
+    }
+    .tagrow{display:flex; gap:8px; flex-wrap:wrap}
+    .tag{
+      font-size:12px; padding:6px 8px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      color: var(--muted);
+      background: rgba(255,255,255,.02);
+    }
+    .muted{color:var(--muted)}
+    .row{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+    .small{font-size:13px}
+
+    /* CONTACT INPUTS */
+    .input{
+      width:100%;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      padding:12px 12px;
+      color:var(--text);
+      outline:none;
+    }
+    textarea.input{min-height:120px; resize:vertical}
+
+    /* FOOTER */
+    footer{padding: 26px 0 46px; color:var(--muted); text-align:center}
+  </style>
+</head>
+
+<body id="top">
+
+  <!-- ✅ BACKGROUND CANVAS (added) -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- NAV -->
+  <div class="nav">
+    <div class="container nav-inner">
+      <div class="logo">
+        <span class="dot"></span>
+        <span>Mohammed Akrour</span>
+      </div>
+      <div class="menu">
+        <a href="#projets">Projets</a>
+        <a href="#competences">Compétences</a>
+        <a href="#parcours">Parcours</a>
+        <a href="#contact">Contact</a>
+        <a class="btn" href="https://www.linkedin.com/in/mohammed-akrour" target="_blank" rel="noreferrer">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header>
+    <div class="container hero">
+      <div class="card">
+        <div class="hero-left">
+          <div>
+            <h1 class="title">Ingénieur Machine Learning & IA Générative</h1>
+            <p class="subtitle">
+              Ingénieur ML/IA avec une expérience en IA générative, LLMs (OpenAI API, RAG) et modèles de séries temporelles.
+              Je conçois et déploie des solutions IA full-stack prêtes pour la production (Python, FastAPI, Docker) en appliquant
+              des pratiques MLOps pour assurer performance et fiabilité.
+              <br/>Paris • Permis B • Ouvert aux opportunités.
+            </p>
+
+            <div class="pill-row">
+              <span class="pill">Python</span>
+              <span class="pill">Machine Learning</span>
+              <span class="pill">Deep Learning</span>
+              <span class="pill">LLM / RAG</span>
+              <span class="pill">FastAPI</span>
+              <span class="pill">Docker</span>
+              <span class="pill">Google Cloud</span>
+            </div>
+
+            <div class="hero-actions">
+              <a class="btn primary" href="#projets">Voir mes projets</a>
+              <a class="btn" href="CV.pdf" target="_blank" rel="noreferrer">Télécharger mon CV</a>
+              <a class="btn" href="https://github.com/TON-GITHUB" target="_blank" rel="noreferrer">GitHub</a>
+            </div>
+          </div>
+
+          <!-- PHOTO -->
+          <div>
+            <div class="avatar-wrap" title="Ajoute ton fichier photo.jpg dans le même dossier">
+              <img class="avatar" src="photo.jpg" alt="Photo de Mohammed Akrour"
+                   onerror="this.style.display='none'; this.parentElement.style.background='rgba(255,255,255,.06)'; this.parentElement.style.padding='0'; this.parentElement.style.border='1px dashed rgba(255,255,255,.25)'; this.parentElement.style.display='grid'; this.parentElement.style.placeItems='center'; this.parentElement.innerHTML='<div style=&quot;text-align:center;padding:18px;color:rgba(233,238,252,.9);font-weight:800&quot;>Ta photo<br><span style=&quot;color:rgba(183,194,224,.95);font-weight:600;font-size:12px&quot;>Ajoute <b>photo.jpg</b></span></div>';" />
+            </div>
+            <div class="avatar-note">Format conseillé : 500×500</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 class="section-title">En bref</h2>
+        <div class="kpis">
+          <div class="kpi"><strong>IA Générative</strong><span>LLM · RAG · Agents</span></div>
+          <div class="kpi"><strong>ML/DL</strong><span>LSTM · Transformers</span></div>
+          <div class="kpi"><strong>Full-stack</strong><span>FastAPI · React</span></div>
+          <div class="kpi"><strong>Production</strong><span>Docker · CI/CD · Cloud</span></div>
+        </div>
+        <div class="divider"></div>
+        <p class="muted small">
+          Recherche : <b>CDI Ingénieur ML / IA</b> — IA générative, data, santé, industrie.
+        </p>
+        <div class="divider"></div>
+        <p class="muted small">
+          Email : <b>akrourmohammedd@gmail.com</b> • Tél : <b>+33 7 80 79 66 07</b>
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <!-- PROJETS -->
+  <section id="projets">
+    <div class="container">
+      <h2 class="section-title">Projets</h2>
+      <div class="grid">
+
+        <article class="item">
+          <div class="row" style="justify-content:space-between">
+            <strong>Assistant IA Santé (LLM + RAG)</strong>
+            <span class="tag">2025</span>
+          </div>
+          <p class="muted">
+            Application IA full-stack pour l’analyse de rapports médicaux. Extraction OCR de PDF, collecte de données via API,
+            agent IA (RAG + LLM) capable de générer des visualisations dynamiques et d’expliquer les résultats dans le chat.
+          </p>
+          <div class="tagrow">
+            <span class="tag">Python</span>
+            <span class="tag">FastAPI</span>
+            <span class="tag">React</span>
+            <span class="tag">Docker</span>
+            <span class="tag">OCR</span>
+            <span class="tag">LLM</span>
+            <span class="tag">RAG</span>
+          </div>
+          <div class="row">
+            <a class="btn" href="https://github.com/TON-GITHUB/assistant-ia-sante" target="_blank" rel="noreferrer">Code</a>
+            <a class="btn" href="#" onclick="alert('Ajoute ici ton lien de démo (Netlify/Vercel) ou une vidéo.')">Démo</a>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="row" style="justify-content:space-between">
+            <strong>Agent IA pour analyse métier (LLM)</strong>
+            <span class="tag">2024</span>
+          </div>
+          <p class="muted">
+            Agent IA basé sur LLM permettant d’interroger et d’analyser des données d’entreprise en langage naturel.
+            Orchestration de plusieurs outils (requêtes SQL, recherche documentaire, calculs Python) via prompt engineering,
+            exposé par une API FastAPI.
+          </p>
+          <div class="tagrow">
+            <span class="tag">LLM</span>
+            <span class="tag">Prompt Eng.</span>
+            <span class="tag">SQL</span>
+            <span class="tag">FastAPI</span>
+            <span class="tag">LangChain</span>
+            <span class="tag">OpenAI API</span>
+          </div>
+          <div class="row">
+            <a class="btn" href="https://github.com/TON-GITHUB/agent-ia-metier" target="_blank" rel="noreferrer">Code</a>
+            <a class="btn" href="#" onclick="alert('Ajoute ici un PDF / captures / README détaillé.')">Détails</a>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="row" style="justify-content:space-between">
+            <strong>Détection d’anomalies sur séries temporelles</strong>
+            <span class="tag">2024</span>
+          </div>
+          <p class="muted">
+            Pipeline TensorFlow avec autoencodeur LSTM (inférence ~15 ms) et seuils automatiques pour détecter des signaux
+            financiers à risque. Prétraitement et calibration des séries (normalisation, structuration) pour améliorer la précision.
+          </p>
+          <div class="tagrow">
+            <span class="tag">TensorFlow</span>
+            <span class="tag">LSTM</span>
+            <span class="tag">Time Series</span>
+            <span class="tag">Anomaly Detection</span>
+          </div>
+          <div class="row">
+            <a class="btn" href="https://github.com/TON-GITHUB/anomalies-time-series" target="_blank" rel="noreferrer">Code</a>
+            <a class="btn" href="#" onclick="alert('Ajoute ici tes résultats (courbes, métriques, slides).')">Résultats</a>
+          </div>
+        </article>
+
+      </div>
+
+      <div style="height:14px"></div>
+
+      <!-- EXTRA PROJECTS -->
+      <div class="grid">
+        <article class="item">
+          <div class="row" style="justify-content:space-between">
+            <strong>Prédiction de risque clinique</strong>
+            <span class="tag">2024</span>
+          </div>
+          <p class="muted">
+            Pipeline de prédiction de risque médical à partir de données cliniques multimodales : nettoyage, imputation,
+            contrôle qualité, validation croisée, optimisation d’hyperparamètres. Comparaison Transformer vs XGBoost
+            (AUROC 0,83 vs 0,79).
+          </p>
+          <div class="tagrow">
+            <span class="tag">Transformer</span>
+            <span class="tag">XGBoost</span>
+            <span class="tag">AUROC</span>
+            <span class="tag">Cross-validation</span>
+          </div>
+          <div class="row">
+            <a class="btn" href="https://github.com/TON-GITHUB/risque-clinique" target="_blank" rel="noreferrer">Code</a>
+            <a class="btn" href="#" onclick="alert('Ajoute un lien vers ton rapport / notebook / slides.')">Rapport</a>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="row" style="justify-content:space-between">
+            <strong>Authentification biométrique faciale</strong>
+            <span class="tag">2023</span>
+          </div>
+          <p class="muted">
+            Système biométrique multimodal combinant vérification et identification faciale, atteignant ~75% de ROC-AUC.
+            Backend Flask et frontend HTML/CSS/JavaScript.
+          </p>
+          <div class="tagrow">
+            <span class="tag">Computer Vision</span>
+            <span class="tag">Flask</span>
+            <span class="tag">HTML/CSS/JS</span>
+            <span class="tag">ROC-AUC</span>
+          </div>
+          <div class="row">
+            <a class="btn" href="https://github.com/TON-GITHUB/face-biometrics" target="_blank" rel="noreferrer">Code</a>
+            <a class="btn" href="#" onclick="alert('Ajoute ici une démo vidéo ou captures d’écran.')">Démo</a>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="row" style="justify-content:space-between">
+            <strong>Détection d’objets (YOLO / Mask R-CNN)</strong>
+            <span class="tag">2023</span>
+          </div>
+          <p class="muted">
+            Pipeline YOLO / Mask R-CNN pour détection automatique de pins. Données annotées (148 images),
+            prétraitement, augmentation et optimisation d’hyperparamètres, précision ~82%.
+          </p>
+          <div class="tagrow">
+            <span class="tag">YOLO</span>
+            <span class="tag">Mask R-CNN</span>
+            <span class="tag">Data Augmentation</span>
+            <span class="tag">CV</span>
+          </div>
+          <div class="row">
+            <a class="btn" href="https://github.com/TON-GITHUB/object-detection-pins" target="_blank" rel="noreferrer">Code</a>
+            <a class="btn" href="#" onclick="alert('Ajoute ici des exemples d’images détectées.')">Résultats</a>
+          </div>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- COMPETENCES -->
+  <section id="competences">
+    <div class="container">
+      <h2 class="section-title">Compétences</h2>
+      <div class="grid">
+        <div class="item">
+          <strong>Machine Learning & Deep Learning</strong>
+          <p class="muted">
+            Régression, classification, séries temporelles, LSTM, Transformers, évaluation multi-métriques,
+            optimisation d’hyperparamètres.
+          </p>
+          <div class="tagrow">
+            <span class="tag">PyTorch</span>
+            <span class="tag">TensorFlow</span>
+            <span class="tag">scikit-learn</span>
+            <span class="tag">Keras</span>
+            <span class="tag">NumPy</span>
+            <span class="tag">SciPy</span>
+          </div>
+        </div>
+
+        <div class="item">
+          <strong>IA Générative & NLP</strong>
+          <p class="muted">
+            LLMs, ingénierie de prompts, RAG, LangChain, Hugging Face, OpenAI API.
+          </p>
+          <div class="tagrow">
+            <span class="tag">LLM</span>
+            <span class="tag">RAG</span>
+            <span class="tag">LangChain</span>
+            <span class="tag">Hugging Face</span>
+            <span class="tag">OpenAI API</span>
+          </div>
+        </div>
+
+        <div class="item">
+          <strong>Production & MLOps</strong>
+          <p class="muted">
+            Déploiement via API, conteneurs Docker, CI/CD, Git, Cloud (Google Cloud).
+          </p>
+          <div class="tagrow">
+            <span class="tag">FastAPI</span>
+            <span class="tag">Docker</span>
+            <span class="tag">CI/CD</span>
+            <span class="tag">Git</span>
+            <span class="tag">Google Cloud</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="height:14px"></div>
+
+      <div class="grid">
+        <div class="item">
+          <strong>Langages & Frameworks</strong>
+          <p class="muted">Python, JavaScript, HTML/CSS, React, Flask, FastAPI, Django, API REST, Power BI.</p>
+          <div class="tagrow">
+            <span class="tag">Python</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">React</span>
+            <span class="tag">Flask</span>
+            <span class="tag">Django</span>
+            <span class="tag">Power BI</span>
+          </div>
+        </div>
+
+        <div class="item">
+          <strong>Données & Bases de données</strong>
+          <p class="muted">Pandas, SQL (PostgreSQL/MySQL), Databricks.</p>
+          <div class="tagrow">
+            <span class="tag">Pandas</span>
+            <span class="tag">SQL</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">MySQL</span>
+            <span class="tag">Databricks</span>
+          </div>
+        </div>
+
+        <div class="item">
+          <strong>Systèmes & Infrastructure</strong>
+          <p class="muted">Linux (Ubuntu), Windows, Windows Server, TCP/IP, VMware.</p>
+          <div class="tagrow">
+            <span class="tag">Linux</span>
+            <span class="tag">Windows Server</span>
+            <span class="tag">TCP/IP</span>
+            <span class="tag">VMware</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARCOURS -->
+  <section id="parcours">
+    <div class="container">
+      <h2 class="section-title">Parcours</h2>
+      <div class="card">
+        <p><strong>Jan 2025 – Juin 2025 — Stage de fin d’études, Assistant IA Santé</strong><br/>
+          <span class="muted">
+            Université Paris-Est Créteil (UPEC), Paris — Développement d’une application IA full-stack (FastAPI, Docker, React),
+            intégration d’un agent IA (RAG+LLM), pipeline ML/DL (régression, LSTM) pour prédiction de risques et détection d’anomalies.
+          </span>
+        </p>
+
+        <div class="divider"></div>
+
+        <p><strong>Fév 2022 – Juin 2022 — Stage, Maintenance turbine à gaz</strong><br/>
+          <span class="muted">
+            Raffinerie de Sidi R’cine, Sonatrach (Algérie) — Analyse de performances, collecte de données,
+            étude de fiabilité et tendances de défaillance.
+          </span>
+        </p>
+
+        <div class="divider"></div>
+
+        <p><strong>2023 – 2025 — Master 2 Biométrie et Vision Intelligente</strong><br/>
+          <span class="muted">Université Paris-Est Créteil (UPEC), France</span>
+        </p>
+        <p><strong>2020 – 2022 — Master 2 Mécatronique</strong><br/>
+          <span class="muted">Université M’Hamed Bougara de Boumerdès (UMBB), Algérie</span>
+        </p>
+
+        <div class="divider"></div>
+
+        <p><strong>Langues</strong><br/>
+          <span class="muted">Français (courant) • Anglais (professionnel)</span>
+        </p>
+
+        <p><strong>Soft skills</strong><br/>
+          <span class="muted">Organisé et rigoureux • Esprit d’équipe • Apprentissage continu • Résolution de problèmes</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">Contact</h2>
+      <div class="grid">
+        <div class="item">
+          <strong>Me joindre</strong>
+          <p class="muted">Le plus simple : email + LinkedIn + GitHub.</p>
+          <div class="row">
+            <a class="btn primary" href="mailto:akrourmohammedd@gmail.com">akrourmohammedd@gmail.com</a>
+            <a class="btn" href="https://www.linkedin.com/in/mohammed-akrour" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a class="btn" href="https://github.com/TON-GITHUB" target="_blank" rel="noreferrer">GitHub</a>
+          </div>
+          <div style="height:10px"></div>
+          <p class="muted small">Téléphone : +33 7 80 79 66 07 • Localisation : Paris</p>
+        </div>
+
+        <div class="item">
+          <strong>Message rapide</strong>
+          <p class="muted small">Site statique : clique sur l’email (à gauche) pour envoyer un message.</p>
+          <input class="input" placeholder="Ton nom" />
+          <input class="input" placeholder="Ton email" />
+          <textarea class="input" placeholder="Ton message"></textarea>
+          <button class="btn" type="button" onclick="alert('Site statique : clique sur l’email à gauche 🙂')">Envoyer</button>
+        </div>
+
+        <div class="item">
+          <strong>Disponibilité</strong>
+          <p class="muted">À personnaliser :</p>
+          <div class="tagrow">
+            <span class="tag">CDI</span>
+            <span class="tag">Paris / Remote</span>
+            <span class="tag">Préavis : à préciser</span>
+          </div>
+          <p class="muted small">
+            Conseil : mets ici 1 phrase “Je recherche un poste d’Ingénieur ML/IA orienté LLM & production.”
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container small">
+      © <span id="y"></span> Mohammed Akrour • Portfolio
+    </div>
+  </footer>
+
+  <!-- ✅ ONE script: year + background animation -->
+  <script>
+    // Year in footer
+    document.getElementById("y").textContent = new Date().getFullYear();
+
+    // Background particles animation (light & subtle)
+    const canvas = document.getElementById("bg-canvas");
+    const ctx = canvas.getContext("2d");
+
+    let particles = [];
+    const COUNT = 50; // light
+
+    function resizeCanvas(){
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", () => {
+      resizeCanvas();
+      initParticles();
+    });
+    resizeCanvas();
+
+    function initParticles(){
+      particles = [];
+      for(let i=0;i<COUNT;i++){
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          r: Math.random() * 2 + 1,
+          dx: (Math.random() - 0.5) * 0.3,
+          dy: (Math.random() - 0.5) * 0.3,
+          o: Math.random() * 0.45 + 0.15
+        });
+      }
+    }
+
+    function step(){
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for(const p of particles){
+        p.x += p.dx;
+        p.y += p.dy;
+
+        if(p.x < 0 || p.x > canvas.width) p.dx *= -1;
+        if(p.y < 0 || p.y > canvas.height) p.dy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(124, 92, 255, ${p.o})`;
+        ctx.fill();
+      }
+      requestAnimationFrame(step);
+    }
+
+    initParticles();
+    step();
+  </script>
+</body>
+</html>
