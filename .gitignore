@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+env/
+venv/
+
+# Conda
+conda-meta/
+
+# Environment variables
+.env
+.env.*
+
+# Vector database (DO NOT COMMIT)
+db/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
