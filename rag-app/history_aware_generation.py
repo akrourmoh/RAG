@@ -3,18 +3,18 @@ from langchain_chroma import Chroma
 from langchain_core.messages import HumanMessage, SystemMessage, AIMessage
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 
-# Load environment variables
+
 load_dotenv()
 
-# Connect to your document database
+
 persistent_directory = "db/chroma_db"
 embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
 db = Chroma(persist_directory=persistent_directory, embedding_function=embeddings)
 
-# Set up AI model
+
 model = ChatOpenAI(model="gpt-4o")
 
-# Store our conversation as messages
+
 chat_history = []
 
 def ask_question(user_question: str):
