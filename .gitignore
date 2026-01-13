@@ -25,3 +25,6 @@ Thumbs.db
 
 # VS Code
 .vscode/
+
+# remove html file
+rag-app/index.html
